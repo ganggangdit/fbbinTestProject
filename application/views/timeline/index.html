@@ -1,0 +1,119 @@
+<!--{include file="<!--{$smarty.const.TEMPLATE_PATH}-->header.html"}-->
+<link href="<!--{$smarty.const.MISC_ROOT}-->css/mainArea/mainArea_top.css" rel="stylesheet" type="text/css" />
+<link href="<!--{$smarty.const.MISC_ROOT}-->css/plug-css/comment-easy/comment_easy.css" type="text/css" rel="stylesheet" />
+<link href="<!--{$smarty.const.MISC_ROOT}-->css/timeline/info.css" type="text/css" rel="stylesheet" />
+<link href="<!--{$smarty.const.MISC_ROOT}-->css/plug-css/tip/jquery.tip.css" type="text/css" rel="stylesheet" />
+<link href="<!--{$smarty.const.MISC_ROOT}-->css/plug-css/calendar/dk_calendar.css" type="text/css" rel="stylesheet" />
+<link href="<!--{$smarty.const.MISC_ROOT}-->css/plug-css/JQuery-uploadify/JQuery_uploadify.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+
+<!--{include file="<!--{$smarty.const.TEMPLATE_PATH}-->top_bar.html"}-->
+<div class="body clearfix" id="timelienIndex">
+	<input type="hidden" id="action_dkcode" value="<!--{$action_uid}-->" />
+	<input type="hidden" id="action_avatar" value="<!--{$action_avatar}-->" />
+	<input type="hidden" id="userid" value="<!--{if isset($login_info['uid'])}--><!--{$login_info['uid']}--><!--{/if}-->" />
+	<input type="hidden" id="ac_dkcode" value="<!--{if isset($action_dkcode)}--><!--{$action_dkcode}--><!--{/if}-->" />
+	
+	<div class="mainArea">
+		<div id="modlueHeader" class="modlueHeader clearfix">
+			<span class="userImg"><a href="#"><img alt="" src="<!--{get_avatar($user['uid'],'ss')}-->"></a></span>
+			<div class="userName" id="userName">
+				<span class="nameTxt"><a href="#"><!--{$user['username']}--></a></span>
+				
+				<div class="dropMenu" id="timelineSelect" style="display:none"></div>
+				<div class="dropMenu" id="hotMonth" style="display:none" complete="false"></div>
+			</div>
+            <!--{if $is_self}-->
+            <div id="TopPostArea" class="userActions">
+                <ul class="composerAttachments">
+                    <li ref="0" class="s_msg act"><span><i class="uiIconP icons3 bp_currentState"></i>状态</span></li>
+                    <li ref="1" class="s_photo"><span><i class="uiIconP icons1 bp_photo"></i>照片</span></li>
+                    <li ref="2" class="s_video"><span><i class="uiIconP icons1 bp_video"></i>视频</span></li>
+                    <!--<li ref="3" class="s_life hide"><span><i class="uiIconP icons1 bp_life"></i>人生记事</span></li>-->
+                </ul>
+                <div class="pointUp hide"></div>
+                <div class="TopPostBox hide">
+                </div>
+            </div>
+            <!--{/if}-->
+		</div>
+		<div class="modlueMainBody"><!--{include file="timeline/mainArea_top.html"}--><!--{include file="timeline/info.html"}--></div>
+		<div id="sideArea">
+		<ul class="timelineBar"></ul>
+	</div>
+	</div>
+
+</div>
+<input type='hidden' id='hd_UID' value="<!--{$login_info['uid']}-->" />
+<input type='hidden' id='hd_userName' value="<!--{$login_info['username']}-->" />
+<input type='hidden' id='hd_avatar' value="<!--{$login_info['avatar_url']}-->" />
+<input type='hidden' id='hd_userPageUrl' value="<!--{$login_info['url']}-->" />
+
+<!--{include file="<!--{$smarty.const.TEMPLATE_PATH}-->footer.html"}-->
+<script type="text/javascript">
+	var fdfsHost = "http://<!--{$fdfsinfo['host']}-->";
+	var fdfsGroup = "<!--{$fdfsinfo['group']}-->";
+</script>
+<script src="<!--{$smarty.const.MISC_ROOT}-->js/plug/dk-tip/dk.tip.js" type="text/javascript"></script>
+
+<script src="<!--{$smarty.const.MISC_ROOT}-->js/plug/drag/drag.js" type="text/javascript"></script>
+<script src="<!--{$smarty.const.MISC_ROOT}-->js/plug/dk-ui/dk.uploader.js" type="text/javascript"></script>
+<script src="<!--{$smarty.const.MISC_ROOT}-->js/timeline/timeline.js" type="text/javascript" ></script>
+<script src="<!--{$smarty.const.MISC_ROOT}-->js/mainArea/mainArea_top.js" type="text/javascript"></script>
+
+<!--start: 时间线头部模块排序 by李世君 2012-3-24-->
+<script src="<!--{$smarty.const.MISC_ROOT}-->js/plug/jQuery-dragsort/jquery.dragsort.min.js"></script>
+<script src="<!--{$smarty.const.MISC_ROOT}-->js/mainArea/mainArea_top_move.js" type="text/javascript"></script>
+<!--End: 时间线头部模块排序-->
+<script src="<!--{$smarty.const.MISC_ROOT}-->js/album/picViewer.js"></script>
+<script src="<!--{$smarty.const.MISC_ROOT}-->js/timeline/postBox.js" type="text/javascript"></script>
+<script src="<!--{$smarty.const.MISC_ROOT}-->js/timeline/info.js" type="text/javascript"></script>
+
+<script src="<!--{$smarty.const.MISC_ROOT}-->js/plug/player/AC_RunActiveContent.js" type="text/javascript" ></script>
+<script type="text/javascript">
+//视频,视频图片url地址 by wangying 2012.6.1
+function mk_videoUrl(vpath){
+	var host = "<!--{$video_src_domain}-->";
+	if (vpath.indexOf(":/")<0){
+		return host+vpath;
+	}else{
+		return vpath;
+	}
+}
+function mk_videoImgUrl(vpath){
+	var host = "<!--{$video_pic_domain}-->";
+	if (vpath.indexOf(":/")<0){
+		return host+vpath;
+	}else{
+		return vpath;
+	}
+}
+</script>
+<script src="<!--{$smarty.const.MISC_ROOT}-->js/plug/embed-for-flash/swfobject.js" type="text/javascript" ></script>
+<script src="<!--{$smarty.const.MISC_ROOT}-->js/plug/dk-ui/dk.UICombox.js" type="text/javascript"></script> 
+<!--<script src="&lt;!&ndash;{$smarty.const.MISC_ROOT}&ndash;&gt;js/plug/jQuery-textArea/jquery.textarea.js" type="text/javascript"></script>-->
+<script src="<!--{$smarty.const.MISC_ROOT}-->js/plug/jQuery-textarea-msgtip/jQuery-textarea-msgtip.js" type="text/javascript"></script>
+<script src="<!--{$smarty.const.MISC_ROOT}-->js/plug/comment-easy/commentEasy.js" type="text/javascript"></script>
+<script src="<!--{$smarty.const.MISC_ROOT}-->js/plug/calendar/dk_calendar.js" type="text/javascript" ></script>
+<script src="<!--{$smarty.const.MISC_ROOT}-->js/plug/jQuery-uploadify/jquery.uploadify.v2.1.4.min.js" type="text/javascript"></script>
+<script src="<!--{$smarty.const.MISC_ROOT}-->js/plug/jQuery-searcher/ViolenceSearch.js" type="text/javascript"></script>
+<script src="<!--{$smarty.const.MISC_ROOT}-->js/plug/friends_list/friends_list.js" type="text/javascript"></script>
+<script src="<!--{$smarty.const.MISC_ROOT}-->js/plug/mousewheel/jquery.mousewheel.js" type="text/javascript"></script>
+
+<script src="<!--{$smarty.const.MISC_ROOT}-->js/plug/friends_list/friends_list.js" type="text/javascript"></script>
+<script src="<!--{$smarty.const.MISC_ROOT}-->js/plug/relation/relation.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function(){
+	//添加关注好友关系
+	var relationWrap = $('#relationWrap');
+	if(relationWrap[0]) {
+		relationWrap.find('div.statusBox').relation({index:true});
+	}
+});
+</script>
+
+<!--Flash swf文件先是处理-->
+<script src="<!--{$smarty.const.MISC_ROOT}-->js/plug/swfobject/swfobject.js" type="text/javascript"></script>
+</body>
+</html>

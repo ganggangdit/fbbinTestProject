@@ -1,0 +1,87 @@
+<!--{include file="header.html"}-->
+</head>
+<link href="<!--{$smarty.const.MISC_ROOT}-->css/setting-userinfo/setting_userinfo.css" type="text/css" rel="stylesheet" />
+<body>
+
+<!--{include file="top_bar.html"}-->
+
+<div class="body clearfix">
+	<div class="mainArea">
+		<div class="modlueHeader clearfix">
+			<span class="userImg"><a href="<!--{$smarty.const.WEB_ROOT}-->main/index.php"><img src="<!--{get_avatar($user['uid'],'s')}-->" alt="" /></a></span>
+			<div class="userName" id="userName">
+				<span class="nameTxt"><a href="<!--{$smarty.const.WEB_ROOT}-->main/index.php"><!--{$login_name}--></a></span>
+				<span class="nameTxt">
+					<span class="fl">系统设置</span>
+				</span>
+				<div class="dropMenu">
+					<div class="triggerBtn"><span class="fl">安全</span><s></s></div>
+					<div class="dropList">
+						<ul class="dropListul">
+							<li><a href="<!--{mk_url('main/setting/settingAccount')}-->" class="itemAnchor"><i class="i_account"></i><span>一般</span></a></li>
+							<li><a href="<!--{mk_url('main/notice/settingnotice')}-->" class="itemAnchor"><i class="i_notice"></i><span>通知</span></a></li>
+							<li><a href="<!--{mk_url('main/setting/settingWeb')}-->" class="itemAnchor"><i class="i_page"></i><span>网页设置</span></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modlueBody">
+			<!--star: headerArea 账户设置标题开始-->
+            <h2 class="accountTitle">系统设置  / 安全</h2>
+      		<!--end: headerArea 账户设置标题结束--> 
+      		<!--start: contentArea 账户设置具体内容开始-->
+      		<ul class="accountContent" id="accountEdit">
+      			<li> 
+	            	<div class="clearfix editItemSect" id="sectItem">
+	            		<span class="accountSettingLabel"><strong>密保问题</strong></span> 
+	            		<span class="accountSettingContent">设置密保问题，将帮助我们识别你的身份</span> 
+	            		<span class="accountSettingEdit blue" id="pwEdit"><i class="icon_edit"></i>编辑</span> 
+	            	</div>
+	            	<div class="boxGray clearfix hideEle editContent" id="securityForm">
+	            		<div class="accountSettingLabel"><strong>密保问题</strong></div>
+	            		<div class="accountSettingEditor">
+	            			<form action="<!--{mk_url('main/setting/setSecurity')}-->" name="securityForm" method="post">
+	            			<p>在修改密码前请先回答一条保密问题</p>
+	            			<ol>
+	            				<li>
+	            					<label>问题：</label>
+	            					<select id="chooseQuestion" name='question'>
+	            						<!--{$select}-->
+	            					</select>
+	            				</li>
+	            				<li class="ans">
+	            					<label>答案：</label>
+	            					<input type="text" name="answer" id="answerInput" maxlength="50" />
+	            					<span class="errors" id="answerError">答案不能为空</span>
+	            				</li>
+	            				<li class="hide">
+	            					<label>原始答案：</label>
+	            					<input type="text" name="oldanswer" id="oldAnswer" maxlength="50" />
+	            					<span class="errors" id="oldAnswerError">答案不能为空/答案错误</span>
+	            				</li>
+	            				<li class="hide">
+	            					<label>新答案：</label>
+	            					<input type="text" name="newanswer" id="newAnswer" maxlength="50" />
+	            					<span class="errors" id="newAnswerError">答案不能为空</span>
+	            				</li>
+	            			</ol>
+	            			<div class="but">
+	            				<span class="save" id="save_security">确定</span>
+	            				<span class="cancel">取消</span>
+	            			</div>
+	            			</form>
+	            		</div>
+	            	</div>
+	           	</li>
+      		</ul>
+		</div>
+	</div>
+	<div class="sideArea">
+	</div>
+</div>
+
+<!--{include file="footer.html"}-->
+<script src="<!--{$smarty.const.MISC_ROOT}-->js/setting_userinfo/setting_userinfo.js" type="text/javascript"></script>
+</body>
+</html>

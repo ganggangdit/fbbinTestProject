@@ -1,0 +1,38 @@
+<!--{include file="header.html"}-->
+<link href="http://dev.duankou.com/misc/css/plug-css/tip/jquery.tip.css" type="text/css" rel="stylesheet" />
+<link href="<!--{$smarty.const.MISC_ROOT}-->css/plug-css/comment-easy/comment_easy.css" type="text/css" rel="stylesheet" />
+<link href="<!--{$smarty.const.MISC_ROOT}-->css/message/request_notice.css" rel="stylesheet" type="text/css" />
+<link href="<!--{$smarty.const.MISC_ROOT}-->css/timeline/info.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+<!--{include file="top_bar.html"}-->
+<div class="body clearfix">
+	<div class="mainArea" id="comment_show">
+		<div class="modlueBody">
+			 <!-- start 信息评论详情 -->
+			<div id="getInfo_box" class="clearfix" >
+                    <ul class="content"></ul>
+		    </div>
+		  <!-- end 信息评论详情 -->
+		</div>
+	</div>
+	<div class="sideArea">
+		
+	</div>
+</div>
+<input type='hidden' id='hd_UID' value="<!--{$login_info['uid']}-->" />
+<input type='hidden' id='hd_userName' value="<!--{$login_info['username']}-->" />
+<input type='hidden' id='hd_avatar' value="<!--{$login_info['avatar_url']}-->" />
+<input type='hidden' id='hd_userPageUrl' value="<!--{$login_info['url']}-->" />
+<input type='hidden' id='params' tid="<!--{$params['tid']}-->" from="<!--{$params['from']}-->" webId="<!--{$params['webId']}-->" />
+<!--{include file="footer.html"}-->
+<script type="text/javascript">
+	var fdfsHost = "http://<!--{$fdfsinfo['host']}-->";
+	var fdfsGroup = "<!--{$fdfsinfo['group']}-->";
+</script>
+<script src="http://dev.duankou.com/misc/js/plug/dk-tip/dk.tip.js" type="text/javascript"></script>
+<script src="<!--{$smarty.const.MISC_ROOT}-->js/timeline/oneInfo.js" type="text/javascript"></script>
+<script src="<!--{$smarty.const.MISC_ROOT}-->js/plug/comment-easy/commentEasy.js" type="text/javascript"></script>
+<script src="http://dev.duankou.com/misc/js/plug/player/AC_RunActiveContent.js" type="text/javascript" ></script>
+</body>
+</html>

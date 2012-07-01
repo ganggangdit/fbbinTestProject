@@ -1,0 +1,201 @@
+<div class="mainAreaTop clearfix dkTimelineSection">
+	<div>
+		<div id="dkProfileCover">
+			<div class="cover">
+				
+				<div id="containImg" class="coverImage <!--{if !$iscover}--> hide <!--{/if}-->">
+					<a id="dkCoverImageContainer" class="coverWrap">
+						<img style="width:849px; margin-left:1px;" class="photo img" style="top: 0px;" src="<!--{$cover}-->">
+						<div class="instructionWrap">
+							<div class="instruction"></div>
+							<span>拖动以调整封面照片</span>
+						</div>
+						<div id="coverBorder" class="coverBorder"></div>
+						<div class="profilePicNotch"><div class="notchInner"></div></div>
+					</a>
+					<!--{if $is_self}-->
+					<div id="editCover">
+						
+						<span id="editCoverbnt" class="editButton"><s></s><font>更改封面</font></span>
+						
+					</div>
+					<!--{/if}-->
+				</div>
+							
+				<div id="noImg" class="coverImage coverNoImage <!--{if $iscover}--> hide <!--{/if}--> ">
+				
+					<div class="coverEmptyWrap">
+						<img class="hide" src="<!--{$smarty.const.MISC_ROOT}-->img/system/more_loading.gif"/>
+					</div>
+					<!--{if $is_self}-->
+					<div id="addCover">					
+						<span id="addCoverbnt" class="addButton"><s></s><font>添加一张封面</font><b></b></span>
+					</div>
+					<!--{/if}-->
+				</div>
+				<!--个人小头像-->
+				<div class="personalSmallImgBorder" id="editPersonImg">
+					<div id="personalSmallImg" class="personalSmallImg">
+						<img src="<!--{get_avatar($user['uid'],'b')}-->" />
+					</div>
+					<!--{if $is_self}-->
+					<div class="editHead  hide"> 
+						<span id="editPerson" class="editButton" <!--{if exist_avatar($user['uid'])}--> nohead="0" <!--{else}-->nohead="1"<!--{/if}-->><s></s><font>编辑个人头像</font><b></b></span>						
+					</div>
+					<!--{/if}-->
+				</div>
+				<!-- 个人小头像-->
+			</div>
+			<div id="dkTimelineHeadline" class="clearfix">
+				
+				<!-- 个人名字和更新信息 -->
+				<div class="nameAndSendMsg">
+					<!-- 个人名字 -->
+					<div class="personalName">
+						<span id="name" href="javascript:void(0);"><!--{$user['username']}--></span>
+					</div>
+					<!--/个人名字-->
+					<!--更新信息和活动记录-->
+					<div class="actions"><!--{if !$is_self}-->
+                        <div id="relationWrap" class="userName relation">
+                        <div uid="<!--{$f_uid}-->" rel="<!--{$relation}-->" class="statusBox"></div>
+                        <!-- 发消息按钮 -->
+							<span id="msgsnd" class="nameTxt <!--{if $relation neq 6 && $relation neq 8 && $relation neq 10}-->hide<!--{/if}-->">
+								<a href="<!--{$msgurl}-->" class="fl">发消息</a>
+							</span>
+                        </div><!--{/if}-->
+					</div>
+					<!--/更新信息和活动记录-->
+				</div>
+				<!--/个人名字和更新信息-->
+			</div>
+                    <div id="coverEditCancelArea" class="coverEditor hide">
+				<div class="saveAndCancel">
+					<span href="javascript:void(0);" class="btnGray png cancelBnt" style="width: auto;"><a class="uiButtonText">取消</a></span>
+					<span href="javascript:void(0);" class="btnBlue png uiBntConfirm" style="width: auto;"><a class="uiButtonText">保存更改</a></span>
+					
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<!--/如没有设封面出现的空白层-->
+	<!--内容区头部导航-->
+	<div class="timelineNavgationPagelet">
+		
+		<!--时间线按钮-->
+		<div class="timelineMenu dkTimelineNavigationWrapper">
+			<div class="timelineNavContent dkTimelineNavigation clearfix">
+				
+				<!--{if (count($user_app_list['nomove']) == 0 && count($user_app_list['move']) == 0)}-->
+				<div class="noPermission">
+					<div class="noPermissionTip">该用户已设置权限，只对部分人开放。</div>
+				</div>
+				<!--{/if}-->
+				
+				<div class="menuLeft">
+					<ul class="timelineNavigation clearfix menuLeftUl" id="menuLeftUl">
+						<ul class="fl">
+						<li class="textLinkLi" id="textLinkLi">
+							<div class="timelineSummarySectionWrapper">
+								<a href="<!--{$infoUrl}-->">
+								<div class="textLinkLiBorder detail">
+									<div class="timelineSummarySection">
+										<span class="profileFragment"><i class="live"></i>住在<span class="blue"><!--{$user['now_addr']}--></span></span>
+										<span class="profileFragment"><i class="home"></i>来自<span class="blue"><!--{$user['home_addr']}--></span></span>
+										<span class="profileFragment"><i class="birth"></i>生日<span class="blue"><!--{if (!empty($user.birthday))}--> <!--{date('Y年m月d日', $user['birthday'])}--><!--{/if}--></span></span>
+									</div>
+								</div>
+								</a>
+								<a href="<!--{$infoUrl}-->" class="textLinkLiText">自我介绍 </a>
+							</div>
+						</li>
+					</ul>
+						<ul class="fr">
+							<ul class="noMoveRange">
+							<!--{if (isset($user_app_list['nomove']))}-->
+								<!--{foreach from=$user_app_list['nomove'] key=key item=val}-->
+									<!--{if (in_array($val['menu_id'], array(1, 2)))}-->
+									<li class="photo">
+										<input type="hidden" name="objInfo" value="" />
+										<input type="hidden" name="objId" value="<!--{$val['menu_id']}-->" />
+										<span class="tab">
+											<div class="imgLinkLiImg tip" url="<!--{$smarty.const.WEB_ROOT}--><!--{$val['menu_url']}-->">
+												<div class="whiteborder">
+													<div class="contentwrapper">
+													<!--{if isset($val['cover'])  && count($val['cover']) > 0}-->
+														<!--{if (is_array($val['cover']))}-->
+														<!--{foreach from=$val['cover'] key=k item=v}-->
+														<a href="<!--{$smarty.const.WEB_ROOT}--><!--{$val['menu_url']}-->"><img class="fans img" src="<!--{if isset($v['ico'])}--><!--{$v['ico']}--><!--{/if}-->" alt="<!--{if isset($v['name'])}--><!--{$v['name']}--><!--{/if}-->" onerror="this.src='<!--{$smarty.const.MISC_ROOT}-->img/default/avatar_ss.gif'"></a>
+														<!--{/foreach}-->
+														<!--{/if}-->
+													<!--{else}-->
+														<div class="tip" hovercard="001" href="javascript:void(0);" url="<!--{$smarty.const.WEB_ROOT}--><!--{$val['menu_url']}-->"><img class="" src="<!--{$val['menu_ico']}-->" alt="<!--{$val['menu_title']}-->" ></div>
+													<!--{/if}-->
+													</div>
+												</div>
+											</div>
+											<!--{if $is_self}-->
+											<div class="dropWrap dropMenu listPermission permissionMiskPar" oid="<!--{$val['menu_id']}-->" s="<!--{if isset($val['weight'])}--><!--{$val['weight']}--><!--{else}-->1<!--{/if}-->" uid="<!--{if isset($val['userlist_content'])}--><!--{$val['userlist_content']}--><!--{/if}-->"><!--{if $val['menu_id'] == 1}--><div class="permissionMisk"></div><!--{/if}--></div>
+											<!--{/if}-->
+											<span class="imgLinkLiText"> <a href="<!--{$smarty.const.WEB_ROOT}--><!--{$val['menu_url']}-->"><!--{$val['menu_title']}--></a><span class="gray"><!--{if $val['nums']}--><!--{$val['nums']}--><!--{/if}--></span></span>
+										</span>
+									</li>
+									<!--{/if}-->
+								<!--{/foreach}-->
+								<!--{/if}-->
+							</ul>
+							<ul class="moveRange">
+								<!--{if (isset($user_app_list['move']))}-->
+								<!--{foreach from=$user_app_list['move'] key=key item=val}-->
+								<span style="display:none"><!--{$key}--><!--{$val['menu_title']}--></span>
+								<!--{if (!in_array($val['menu_id'], array(1, 2)))}-->
+								<li class="photo <!--{if (($key > 3) && $is_self)}-->hide<!--{elseif (!$is_self && $key > 4 && count($user_app_list['nomove']))}-->hide<!--{elseif (!$is_self && $key > 5 && !count($user_app_list['nomove']))}-->hide<!--{/if}-->">
+									<input type="hidden" name="objInfo" value="" />
+									<input type="hidden" name="objId" value="<!--{$val['menu_id']}-->" />
+									<span class="tab">
+										<div class="imgLinkLiImg tip" url="<!--{$smarty.const.WEB_ROOT}--><!--{$val['menu_url']}-->">
+											<div class="whiteborder">
+												<div class="contentwrapper">
+													<!--{if isset($val['cover']) && count($val['cover']) > 0}-->
+														<!--{if (is_array($val['cover']))}-->
+														<div class="<!--{if $is_self}-->canmove<!--{/if}-->" url="<!--{$smarty.const.WEB_ROOT}--><!--{$val['menu_url']}--><!--{if ($val['menu_id'] == 5 && !$is_self)}-->&m=friendlist<!--{/if}-->">
+														<!--{foreach from=$val['cover'] key=k item=v}-->
+														<a href="<!--{$smarty.const.WEB_ROOT}--><!--{$val['menu_url']}-->"><img class="fans img" src="<!--{if isset($v['ico'])}--><!--{$v['ico']}--><!--{/if}-->" alt="<!--{if isset($v['name'])}--><!--{$v['name']}--><!--{/if}-->"onerror="this.src='<!--{$smarty.const.MISC_ROOT}-->img/default/avatar_ss.gif'"></a>
+														<!--{/foreach}-->
+														</div>
+														<!--{/if}-->
+													<!--{else}-->
+														<div class="tip <!--{if $is_self}-->canmove<!--{/if}-->" hovercard="001" url="<!--{$smarty.const.WEB_ROOT}--><!--{$val['menu_url']}--><!--{if ($val['menu_id'] == 5 && !$is_self)}-->&m=friendlist<!--{/if}-->"><img class="<!--{if $val['menu_id'] == 10}-->main_event<!--{/if}-->" src="<!--{$val['menu_ico']}-->" alt="<!--{$val['menu_title']}-->"></div>
+													<!--{/if}-->
+												</div>
+											</div>
+										</div>
+										
+										<!--{if $is_self}-->
+										<div class="dropWrap dropMenu listPermission" oid="<!--{$val['menu_id']}-->" s="<!--{if isset($val['weight']) && $val['weight'] != ''}--><!--{$val['weight']}--><!--{else}-->1<!--{/if}-->" uid="<!--{if isset($val['userlist_content'])}--><!--{$val['userlist_content']}--><!--{/if}-->"><!--{if $val['menu_id'] == 11}--><div class="permissionMisk"></div><!--{/if}--></div>
+										<!--{/if}-->
+										<span class="imgLinkLiText"> <a href="<!--{$smarty.const.WEB_ROOT}--><!--{$val['menu_url']}--><!--{if ($val['menu_id'] == 5 && !$is_self)}-->&m=friendlist<!--{/if}-->"><!--{$val['menu_title']}--></a><span class="gray <!--{if $val['menu_id'] == 6}-->main_album<!--{/if}--><!--{if $val['menu_id'] == 7}-->main_video<!--{/if}--><!--{if $val['menu_id'] == 10}-->main_event<!--{/if}-->"><!--{if $val['nums']}--><!--{$val['nums']}--><!--{/if}--></span></span>
+									</span>
+								</li>
+								<!--{/if}-->
+								<!--{/foreach}-->
+								<!--{/if}-->
+							</ul>
+						</ul>
+					</ul>
+				</div>
+				<!--{if (count($user_app_list['nomove']) > 0 || count($user_app_list['move']) > 0)}-->
+				<div class="menuRight">
+					<div class="hideImgLinkBtn">
+						<a id="seemore" href="javascript:void(0);" > <span class="linkClickSpan"><span class="text"><!--{if (intval((count($user_app_list['nomove']) + count($user_app_list['move'])) - 6) > 0)}--><!--{intval((count($user_app_list['nomove']) + count($user_app_list['move'])) - 6)}--><!--{else}-->0<!--{/if}--></span></span> </a>
+					</div>
+				</div>
+				<!--{/if}-->
+			</div>
+		</div>
+		<!--/时间线按钮-->
+	</div>
+	<!--/内容区头部导航-->
+</div>
+<!--/时间线首页内容区头部-->

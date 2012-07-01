@@ -1,0 +1,69 @@
+<!--{include file="`$smarty.const.WEB_ROOT_SMARTY`main/application/views/header.html"}-->
+<link href="<!--{$smarty.const.MISC_ROOT}-->css/search/search.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<!--{include file="`$smarty.const.WEB_ROOT_SMARTY`main/application/views/top_bar.html"}-->
+
+<div class="body clearfix">
+	<div class="mainArea">
+		<div class="modlueHeader clearfix">
+			<span class="userImg"><a href="<!--{$user_url}-->"><img src="<!--{$user_avatar}-->" alt="" /></a></span>
+			<div class="userName">
+				<span class="nameTxt"><a href="<!--{$user_url}-->"><!--{$user_name}--></a></span>
+				<span class="nameTxt"><a href="<!--{$app_url_list.event}-->">搜索</a></span>
+				<div class="dropMenu">
+					<div class="triggerBtn"><span class="fl">活动</span><s></s></div>
+					<div class="dropList">
+						<ul class="dropListul">
+							<li><a href="<!--{$app_url_list.globals}-->" class="itemAnchor"><i class="i_search"></i><span>全部</span></a></li>
+							<li><a href="<!--{$app_url_list.people}-->" class="itemAnchor"><i class="i_friend"></i><span>人名</span></a></li>
+							<li><a href="<!--{$app_url_list.website}-->" class="itemAnchor"><i class="i_page"></i><span>网页</span></a></li>
+							<li><a href="<!--{$app_url_list.status}-->" class="itemAnchor"><i class="i_status"></i><span>状态</span></a></li>
+							<li><a href="<!--{$app_url_list.photo}-->" class="itemAnchor"><i class="i_photo"></i><span>照片</span></a></li>
+							<li><a href="<!--{$app_url_list.album}-->" class="itemAnchor"><i class="i_album"></i><span>相册</span></a></li>
+							<li><a href="<!--{$app_url_list.video}-->" class="itemAnchor"><i class="i_video"></i><span>视频</span></a></li>
+							<li><a href="<!--{$app_url_list.blog}-->" class="itemAnchor"><i class="i_blog"></i><span>博客</span></a></li>
+							<li><a href="<!--{$app_url_list.answer}-->" class="itemAnchor"><i class="i_ask"></i><span>问答</span></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modlueBody">
+			<h3 class="modlueBodyTitle categoryTitle" id="term" name="<!--{$keyword}-->">活动(<!--{$total}-->)</h3>
+			<!--{if $isEmpty eq true}-->
+			<div class="noResult">未搜索到相应结果，请重新输入关键字</div>
+			<!--{else}-->
+			<div class="searchResult" id="activityResult">
+				<ul class="clearfix">
+				<!--{foreach from=$event item=vo}-->
+					<li class="searchLi">
+						<a href="<!--{$vo.url}-->" class="headerImg"><img src="<!--{$vo.img}-->" alt="" /></a>
+						<p class="searchCont">
+							<a href="<!--{$vo.url}-->" title="<!--{$vo.fullname}-->"><!--{$vo.name_txt}--></a>
+							<span class="show" title="<!--{$vo.fulltext}-->"><!--{$vo.time}--></span>
+						</p>
+					</li>
+				<!--{/foreach}-->
+				</ul>
+				<!--{if !$is_last_page}-->
+				<div class="moreResult hide">
+					<a name="9" href="<!--{$smarty.const.WEB_ROOT}-->main/?c=search&m=main&type=event" rel="1" class="hide">查看更多活动<i></i></a>
+					<span ><img width="16" height="7" alt="loading" src="<!--{$smarty.const.MISC_ROOT}-->img/system/more_loading.gif"></span>
+				</div>
+				<!--{/if}-->
+			</div>
+			<!--{/if}-->
+		</div>
+	</div>
+	<div class="sideArea">
+		sideArea
+	</div>
+</div>
+
+
+<!--{include file="`$smarty.const.WEB_ROOT_SMARTY`main/application/views/footer.html"}-->
+<script type="text/javascript" src="<!--{$smarty.const.MISC_ROOT}-->js/searchResult/searchResult.js"></script>
+</body>
+</html>
